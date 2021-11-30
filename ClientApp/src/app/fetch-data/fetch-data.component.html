@@ -1,0 +1,41 @@
+<h1>Weather forecast</h1>
+
+<p *ngIf="!forecasts"><em>Loading...</em></p>
+
+<kendo-grid [kendoGridBinding]="forecasts"
+            [sortable]="true"
+            [filterable]="true"
+            [pageSize]="20"
+            [pageable]="true"
+            [groupable]="true"
+            [reorderable]="true"
+            [resizable]="true"
+            [height]="500"
+            [columnMenu]="{ filter: true }">
+
+  <!--<ng-template kendoGridToolbarTemplate>
+
+    <kendo-grid-spacer></kendo-grid-spacer>
+    <button kendoGridExcelCommand type="button" icon="file-excel">
+      Export to Excel
+    </button>
+    <button kendoGridPDFCommand  icon="file-pdf">Export to PDF</button>
+  </ng-template>
+        -->
+  <kendo-grid-column field="date"
+                     format="{0:d}"
+                     filter="date"
+                     title="Date">
+  </kendo-grid-column>
+  <kendo-grid-column field="temperatureC" title="Temperature C">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{ dataItem.temperatureC }}°C
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="summary" title="Summary"></kendo-grid-column>
+  <kendo-grid-column field="temperatureF" title="Temperature F">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{ dataItem.temperatureF }}°F
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
